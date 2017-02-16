@@ -2,16 +2,16 @@
 # -*- encoding: utf-8
 
 from __future__ import absolute_import, division, print_function
-
-try:
-    import wx
-except ImportError:
-    import sys
-    sys.path += [
-        "/usr/lib/python2.7/dist-packages/wx-2.8-gtk2-unicode",
-        "/usr/lib/python2.7/dist-packages"
-    ]
-    import wx
+import wx
+#try:
+#    import wx
+#except ImportError:
+#    import sys
+#    sys.path += [
+#        "/usr/lib/python2.7/dist-packages/wx-2.8-gtk2-unicode",
+#        "/usr/lib/python2.7/dist-packages"
+#    ]
+#    import wx
 
 import matplotlib
 matplotlib.use('WXAgg')
@@ -293,7 +293,7 @@ class ListBoxDraggable(wx.ListBox):
         self.Bind(wx.EVT_RIGHT_UP, self.on_right_up)
         self.Bind(wx.EVT_MOTION, self.on_move)
 
-        self.index_iter = xrange(len(self.data))
+        self.index_iter = range(len(self.data))
 
         self.selected_items = [True] * len(self.data)
         self.index_mapping = list(range(len(self.data)))
@@ -409,7 +409,7 @@ class FilterPanel(wx.Panel):
         self.combo_boxes = []
         self.text_controls = []
 
-        for i in xrange(self.num_filters):
+        for i in range(self.num_filters):
             combo_box = wx.ComboBox(self, choices=columns_with_neutral_selection, style=wx.CB_READONLY)
             text_ctrl = wx.TextCtrl(self, wx.ID_ANY, '')
 
@@ -435,7 +435,7 @@ class FilterPanel(wx.Panel):
     def update_conditions(self):
         # print("Updating conditions")
         conditions = []
-        for i in xrange(self.num_filters):
+        for i in range(self.num_filters):
             column_index = self.combo_boxes[i].GetSelection()
             condition = self.text_controls[i].GetValue()
             if column_index != wx.NOT_FOUND and column_index != 0:
